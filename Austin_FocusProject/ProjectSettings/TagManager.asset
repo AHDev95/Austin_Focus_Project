@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hookable
   - NotHookable
+  - wall
   layers:
   - Default
   - TransparentFX

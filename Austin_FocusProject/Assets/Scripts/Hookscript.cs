@@ -15,7 +15,8 @@ public class Hookscript : MonoBehaviour
     GameObject gun;
     [SerializeField]
     GameObject XRRig;
-    bool Hit = false;
+    bool Hook = false;
+    bool dontHook = false;
     public void fire()
     {
         gameObject.transform.parent = null;
@@ -35,19 +36,16 @@ public class Hookscript : MonoBehaviour
 
             hookBody.velocity = Vector3.zero;
             hookBody.isKinematic = true;
-            Hit = true;
-            /*StartCoroutine(HookableWall());
-            if (other.gameObject.CompareTag("Hookable"))//check for keystone tag
-            {
-                Hit = true;
-                StartCoroutine(HookableWall());*/
+            Hook = true;
+           // StartCoroutine(HookableWall());
+           
         }
-       /* else if (other.gameObject.CompareTag("NotHookable"))
+       else if (other.gameObject.CompareTag("NotHookable"))
         {
             hookBody.velocity = Vector3.zero;
-
-            StartCoroutine(wall());
-        }*/
+            dontHook = true;
+            //StartCoroutine(wall());
+        } /**/
 
     }
 
@@ -58,13 +56,52 @@ public class Hookscript : MonoBehaviour
 
         //if hit is true start coroutine hookableNothookable yield break 
 
-        if (Hit)
+        if (Hook)
         {
-            StartCoroutine(HookableWall());
-            Hit = false;
+            hookBody.isKinematic = true;
+
+            yield return delay;
+            StartCoroutine(XRRig.GetComponent<GrappleMoveScript>().GrappleLoco());
+
+            if (transform.position != lockpoint.transform.position)
+            {
+
+
+                transform.position = lockpoint.transform.position;
+                transform.rotation = lockpoint.transform.rotation;
+                gameObject.transform.parent = gun.transform;
+
+                // resetHook = true;
+                // Hit = false;
+                // StopCoroutine("Fire");
+            }
+            Debug.Log("Hit hookable wall");
+            //yield break;
+            //StartCoroutine(HookableWall());
+            Hook = false;
             yield break;
         }
-      if (transform.position != lockpoint.transform.position)
+        else if (dontHook)
+        {
+            hookBody.isKinematic = true;
+            //yield return new WaitForSeconds(1); 
+            if (transform.position != lockpoint.transform.position)
+            {
+
+
+                transform.position = lockpoint.transform.position;
+                transform.rotation = lockpoint.transform.rotation;
+                gameObject.transform.parent = gun.transform;
+
+                // resetHook = true;
+                // Hit = false;
+                // StopCoroutine("Fire");
+            }
+
+            dontHook = false;
+            yield break;
+        }
+        else if (transform.position != lockpoint.transform.position)
         {
 
 
@@ -77,7 +114,7 @@ public class Hookscript : MonoBehaviour
        Debug.Log(" reset");
         yield break;
     }
-
+    /*
     public IEnumerator HookableWall() //condense done to one coroutine
     {
         //StopCoroutine(fireTimer());
@@ -122,5 +159,5 @@ public class Hookscript : MonoBehaviour
          Debug.Log("Hit wall");
         yield return null;
     }
-    
+    */
 }
