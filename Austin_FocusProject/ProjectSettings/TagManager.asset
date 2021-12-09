@@ -11,6 +11,8 @@ TagManager:
   - LeftFingerTip
   - tablet
   - buttonColider
+  - target
+  - KeyItem
   layers:
   - Default
   - TransparentFX
