@@ -16,13 +16,13 @@ public class SwitchHandsScript : MonoBehaviour
     GameObject RightHandInteractor;
 
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         GrabInteractable = GetComponent<XRGrabInteractable>();
     }
 
-   public void SwapHand()
+   public void SwapHand() //Mike's script foe swaping hands for interactibles
     {
         if (GrabInteractable.selectingInteractor.name == LeftHandInteractor.name)
         {

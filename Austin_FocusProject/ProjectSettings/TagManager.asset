@@ -14,6 +14,7 @@ TagManager:
   - target
   - KeyItem
   - dock
+  - Parts
   layers:
   - Default
   - TransparentFX
