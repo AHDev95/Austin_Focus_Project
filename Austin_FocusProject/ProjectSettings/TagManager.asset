@@ -13,6 +13,7 @@ TagManager:
   - buttonColider
   - target
   - KeyItem
+  - dock
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - buttonCollider
   - Holster
   - StaticBakedLighting
-  - 
+  - Dock
   - 
   - 
   - 
