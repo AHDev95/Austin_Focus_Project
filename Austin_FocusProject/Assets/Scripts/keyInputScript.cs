@@ -14,7 +14,7 @@ public class keyInputScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("FingerTip")) //when the index finger enters trigger
         {
-            //Debug.Log("button pressed");
+           // Debug.Log("button pressed");
           if (KS.count < 4) // only if the count is less than 4
            { 
              KS.enterCode[KS.count] = buttonNumber; //fill element that matches the count 

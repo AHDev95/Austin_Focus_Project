@@ -12,6 +12,7 @@ public class keypadScript : MonoBehaviour
    private UnityEvent grabInterActive;
     public void checkcode()
     {
+       //Debug.Log("checking");
         for (int i = 0; i < enterCode.Length; i++){ 
 
         if(rightcode[i] == enterCode[i])

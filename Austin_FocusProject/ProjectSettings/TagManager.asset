@@ -15,6 +15,7 @@ TagManager:
   - KeyItem
   - dock
   - Parts
+  - fuse
   layers:
   - Default
   - TransparentFX
