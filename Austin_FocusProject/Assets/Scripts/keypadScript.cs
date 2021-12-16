@@ -13,7 +13,7 @@ public class keypadScript : MonoBehaviour
     public void checkcode()
     {
        //Debug.Log("checking");
-        for (int i = 0; i < enterCode.Length; i++){ 
+       for (int i = 0; i < enterCode.Length; i++){ 
 
         if(rightcode[i] == enterCode[i])
         {
