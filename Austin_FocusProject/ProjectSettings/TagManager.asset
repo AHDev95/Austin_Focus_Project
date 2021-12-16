@@ -16,6 +16,7 @@ TagManager:
   - dock
   - Parts
   - fuse
+  - brokenFuse
   layers:
   - Default
   - TransparentFX

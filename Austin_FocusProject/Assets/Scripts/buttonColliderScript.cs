@@ -12,7 +12,7 @@ public class buttonColliderScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) //interacting with the UI with collision instead of raycast 
     {
-       // Debug.Log("pressed");
+       Debug.Log("pressed");
         if (other.gameObject.CompareTag("FingerTip"))
         {
             button.GetComponent<Button>().onClick.Invoke();

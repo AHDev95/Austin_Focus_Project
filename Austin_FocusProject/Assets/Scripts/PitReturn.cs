@@ -5,13 +5,16 @@ using UnityEngine;
 public class PitReturn : MonoBehaviour
 {
     [SerializeField]
-    GameObject spawnPoint;
+    GameObject PlayerspawnPoint;
+    [SerializeField]
+    GameObject ItemspawnPoint;
     [SerializeField]
     GameObject player;
     [SerializeField]
     GameObject keyitem1;
     [SerializeField]
     GameObject keyitem2;
+    WaitForSeconds delay = new WaitForSeconds(1);
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,26 +23,22 @@ public class PitReturn : MonoBehaviour
             StartCoroutine(Respawnpoint());
         }
 
-        if (other.gameObject.CompareTag("KeyItem"))
+       /* if (other.gameObject.CompareTag("KeyItem"))
         {
             StartCoroutine(resetItem());
-        }
+        }*/
 
     }
 
-    public IEnumerator resetItem()
-    {
-        //Debug.Log("moveing");
-        keyitem1.transform.position = spawnPoint.transform.position;
-        keyitem2.transform.position = spawnPoint.transform.position;
-
-        yield break;
-    }
+    
 
     public IEnumerator Respawnpoint()
     {
         //Debug.Log("moveing");
-        player.transform.position = spawnPoint.transform.position;
-        yield break;
+        player.transform.position = PlayerspawnPoint.transform.position;
+        yield return delay;
+        keyitem1.transform.position = ItemspawnPoint.transform.position;
+        yield return delay;
+        keyitem2.transform.position = ItemspawnPoint.transform.position;
     }
 }
