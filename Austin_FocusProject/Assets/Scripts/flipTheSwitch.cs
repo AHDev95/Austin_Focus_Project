@@ -25,12 +25,12 @@ public class flipTheSwitch : MonoBehaviour
         //Debug.Log("started");
         hinge = GetComponent<HingeJoint>();
         grabInter = GetComponent<XRGrabInteractable>();
-        grabInter.selectEntered.AddListener(openUp);
+        grabInter.selectEntered.AddListener(openUp); //when grabbed openup will start
     }
 
     private void openUp(SelectEnterEventArgs arg0)
     {
-        if (hinge.angle >= hinge.limits.max)
+        if (hinge.angle >= hinge.limits.max)//when the hinge hits its max limit 
         {
             Door1.GetComponent<Doorscript>().Opendoor();
             Door2.GetComponent<Doorscript>().Opendoor();

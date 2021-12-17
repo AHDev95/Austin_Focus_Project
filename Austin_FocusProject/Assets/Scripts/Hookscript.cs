@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Hookscript : MonoBehaviour
 {
@@ -16,13 +17,19 @@ public class Hookscript : MonoBehaviour
     [SerializeField]
     GameObject XRRig;
     bool Hook = false;
+    [SerializeField]
+    private UnityEvent hookfired;
+    [SerializeField]
+    private UnityEvent hookreturn;
+
+
     //bool dontHook = false;
     public void fire()
     {
         gameObject.transform.parent = null;
         hookBody.isKinematic = false;
         hookBody.AddForce(-gun.transform.up * speed, ForceMode.Impulse); //push the hook forward time value of speed
-
+        hookfired.Invoke();
         StartCoroutine(fireTimer());
         Debug.Log("end of fire function");
     }
@@ -36,7 +43,7 @@ public class Hookscript : MonoBehaviour
         if (other.gameObject.CompareTag("Hookable"))//check for  tag
         {
              Debug.Log("hit");
-
+            
             hookBody.velocity = Vector3.zero;
             hookBody.isKinematic = true;
             Hook = true;
@@ -51,6 +58,7 @@ public class Hookscript : MonoBehaviour
             transform.position = lockpoint.transform.position;
             transform.rotation = lockpoint.transform.rotation;
             gameObject.transform.parent = gun.transform;
+            hookreturn.Invoke();
             
         } /**/
 
@@ -77,8 +85,8 @@ public class Hookscript : MonoBehaviour
                 transform.position = lockpoint.transform.position;
                 transform.rotation = lockpoint.transform.rotation;
                 gameObject.transform.parent = gun.transform;
+                hookreturn.Invoke();
 
-               
             }
             Debug.Log("Hit hookable wall");
             
@@ -94,7 +102,7 @@ public class Hookscript : MonoBehaviour
             transform.position = lockpoint.transform.position;
             transform.rotation = lockpoint.transform.rotation;
             gameObject.transform.parent = gun.transform;
-
+            hookreturn.Invoke();
         } 
        Debug.Log(" reset");
         yield break;
